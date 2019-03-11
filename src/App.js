@@ -1,25 +1,53 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import ListTasks from './ListTasks.js';
+import CreateTask from './CreateTask.js';
+import axios from "axios";
 
 class App extends Component {
+  state = {
+    tasks: []
+  }
+
+  deleteTask = async (deletedTask) => {
+    await axios.delete(`http://localhost:5000/tasks/${deletedTask.id}`);
+    this.setState((state) => ({
+      tasks: state.tasks.filter((task) => task.id !== deletedTask.id)
+    }));
+  }
+
+  createTask = async (task) => {
+    const newTask = await axios({
+      method: 'post',
+      url: 'http://localhost:5000/tasks',
+      data: {
+        "taskName": task
+      }
+    })
+    this.setState((state) => {
+      tasks: state.tasks.push(newTask.data)
+    },
+    () => {
+      this.forceUpdate();
+    })
+  }
+
+  async componentDidMount() {
+    const tasks = await axios.get('http://localhost:5000/tasks');
+    this.setState({
+      tasks: tasks.data
+    });
+  }
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+    return(
+      <div id='app'>
+        <h1>React TODO</h1>
+        <CreateTask onCreateTask = { this.createTask }/>
+        <ListTasks
+          onDeleteTask={ this.deleteTask }
+          tasks = { this.state.tasks }
+        />
       </div>
     );
   }
