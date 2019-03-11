@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 
 class CreateTask extends Component {
 	handleSubmit = (event) => {
@@ -11,6 +12,7 @@ class CreateTask extends Component {
 	render() {
     return (
       <div>
+        <Link className='close-create-contact' to='/'>Close</Link>
         <form className='create-contact-form' onSubmit={ this.handleSubmit }>
           <div className='create-contact-details'>
             <input className='create-contact-input' type='text' name='taskName' required="required" pattern="^[^-\s][a-zA-Z0-9_\s-]+$" placeholder='Add a Task'/>

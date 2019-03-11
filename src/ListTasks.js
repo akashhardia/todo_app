@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import escapeRegExp from 'escape-string-regexp'
+import { Link } from 'react-router-dom'
 
 class ListTasks extends Component {
 
@@ -29,6 +30,10 @@ class ListTasks extends Component {
 
 		return(
 			<div>
+        <Link
+            to='/create'
+            className='add-contact'
+        >Add Contact</Link>
 				<input
           className='search-tasks'
           type='text'

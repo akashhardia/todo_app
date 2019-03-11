@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import ListTasks from './ListTasks.js';
 import CreateTask from './CreateTask.js';
+import { Route } from 'react-router-dom'
 import axios from "axios";
 
 class App extends Component {
@@ -43,11 +44,15 @@ class App extends Component {
     return(
       <div id='app'>
         <h1>React TODO</h1>
-        <CreateTask onCreateTask = { this.createTask }/>
-        <ListTasks
-          onDeleteTask={ this.deleteTask }
-          tasks = { this.state.tasks }
-        />
+        <Route exact path='/' render={() => (
+          <ListTasks
+            onDeleteTask={ this.deleteTask }
+            tasks = { this.state.tasks }
+          />
+        )}/>
+        <Route path='/create' render={({ history }) => (
+          <CreateTask onCreateTask = { this.createTask }/>
+        )}/>
       </div>
     );
   }
