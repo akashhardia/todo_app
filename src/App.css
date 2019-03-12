@@ -1,3 +1,8 @@
+#root {
+  min-width: 350px;
+  margin: auto;
+}
+
 h1 {
   text-align: center;
   background: #aa4b6b;  /* fallback for old browsers */
@@ -13,6 +18,7 @@ h1 {
   font-size: x-large;
   padding: 20px;
   outline-width: 0;
+  box-sizing: border-box;
 }
 
 .search-tasks::placeholder {
@@ -36,17 +42,18 @@ h1 {
 .create-contact-details > button {
   padding: 20px;
   width: 20%;
+  cursor: pointer;
 }
 
 .task-list {
   margin: 0px;
+  padding-left: 0px;
 }
 
 .task-list-item {
   display: flex;
+  padding-left: 15px;
 }
-
-
 
 .task-details {
   width: 80%;
@@ -54,15 +61,28 @@ h1 {
 
 .task-remove {
   width: 20%;
-  background-color: red;
+  background-color: #c60909;
+  color: white;
   border: 0px;
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.add-task, .close-create-task {
+  text-decoration: none;
+  border-right: 5px;
+  background-color: #a5aca5;
+  display: inline-block;
+  width: 100px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  box-shadow: 0px 2px 1px 1px gray;
+}
+
+@media only screen and (min-width: 650px) {
+  #root {
+    width: 670px;
   }
 }
