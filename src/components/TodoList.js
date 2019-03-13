@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { deleteTaskInDb } from '../utils/util'
 import escapeRegExp from 'escape-string-regexp'
 import { Link } from 'react-router-dom'
 
@@ -14,12 +13,7 @@ class TodoList extends Component {
 
 	deleteTodo = async (task) => {
 		const { remove } = this.props;
-		try {
-			await deleteTaskInDb(task);
-			remove(task);
-		} catch(err) {
-			throw('err: ', err);
-		}
+		remove(task);	
 	}
 
 	render() {

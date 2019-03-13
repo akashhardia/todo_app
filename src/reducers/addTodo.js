@@ -11,6 +11,7 @@ const defaultState = {
 }
 
 function addToDo(state = defaultState, action) {
+  console.log('reducer reached');
   switch (action.type) {
     case ADD_TODO_REQUEST:
     	return {

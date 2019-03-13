@@ -3,11 +3,16 @@ import { render } from 'react-dom'
 import './index.css';
 import App from './components/App.js';
 import * as serviceWorker from './serviceWorker';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux'
 import reducers from './reducers/index.js';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './sagas';
 
-const store = createStore(reducers);
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(reducers, applyMiddleware(sagaMiddleware));
+
+sagaMiddleware.run(rootSaga);
 
 render(
   <Provider store={store}>
@@ -15,5 +20,7 @@ render(
   </Provider>,
   document.getElementById('root')
 )
+
+store.subscribe(() => {console.log(store.getState())});
 
 serviceWorker.unregister();

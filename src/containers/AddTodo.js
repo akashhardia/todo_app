@@ -1,19 +1,13 @@
-import React, {Component} from 'react';
-import { addTodoRequest, addTodoSuccess, addTodoFailure } from '../actions/addTodo';
+import React, { Component, Fragment } from 'react';
+import { addTodoRequest } from '../actions/addTodo';
 import { connect } from 'react-redux';
-import { createTaskInDb } from '../utils/util'
 import { Link } from 'react-router-dom'
 
 class AddTodo extends Component {
-	createTask = async (task) => {
-		const { request, success, failure } = this.props;
-		request();
-		try {
-			const createdTask = await createTaskInDb(task);
-			success(createdTask);
-		} catch(err) {
-			failure(err);
-		}
+	createTask = (task) => {
+		const { request } = this.props;
+		console.log('add todo', task);
+		request(task);		
   }
 
 	handleSubmit = (event) => {
@@ -24,7 +18,7 @@ class AddTodo extends Component {
 
 	render() {
 		return(
-			<div>
+			<Fragment>
 				<Link className='close-create-task' to='/'>Close</Link>
 				<form className='create-contact-form' onSubmit={ this.handleSubmit }>
           <div className='create-contact-details'>
@@ -32,15 +26,13 @@ class AddTodo extends Component {
             <button className='create-contact-submit' type="submit" >Add</button>
           </div>
         </form>
-			</div>
+			</Fragment>
 		)
 	}
 }
 
 const mapDispatchToProps = (dispatch) => ({
-	request : () => dispatch(addTodoRequest()),
-	success : (todoLists) => dispatch(addTodoSuccess(todoLists)),
-	failure : (msg) => dispatch(addTodoFailure(msg))
+	request : (task) => dispatch(addTodoRequest(task))
 })
 
 export default connect(null, mapDispatchToProps)(AddTodo);
