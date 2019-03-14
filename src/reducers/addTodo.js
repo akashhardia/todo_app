@@ -2,7 +2,7 @@ import {
   ADD_TODO_REQUEST,
   ADD_TODO_SUCCESS,
   ADD_TODO_FAILURE
-} from '../actions/action_types'
+} from '../actions/action_types';
 
 const defaultState = {
   data: {},
@@ -37,4 +37,4 @@ function addToDo(state = defaultState, action) {
   }
 }
 
-export default addToDo
+export default addToDo;

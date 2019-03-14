@@ -25,26 +25,6 @@ h1 {
   color: #d4ccccfa;
 }
 
-.create-contact-details {
-  display: flex;
-}
-
-.create-contact-details > input {
-  width: 80%;
-  padding: 20px;
-  font-size: x-large;
-}
-
-.create-contact-details > input::placeholder {
-  color: #d4ccccfa;
-}
-
-.create-contact-details > button {
-  padding: 20px;
-  width: 20%;
-  cursor: pointer;
-}
-
 .task-list {
   margin: 0px;
   padding-left: 0px;
