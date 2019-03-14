@@ -6,17 +6,20 @@ class TodoList extends Component {
 	state = {
     query: ''
 	}
-	
-	updateQuery = (query) => {
+
+	updateQuery = (event) => {
+		const query = event.target.value;
     this.setState({ query: query.trim() })
   }
 
-	deleteTodo = async (task) => {
+	deleteTodo = e => {
+		const { param } = e.target.dataset;
+		const task = JSON.parse(param).task
 		const { remove } = this.props;
 		remove(task);	
 	}
 
-	render() {
+	generateVisibleTasks = () => {
 		const { query } = this.state;
 		const { lists } = this.props;
 		let showingTasks = [];
@@ -26,6 +29,13 @@ class TodoList extends Component {
 		} else {
 			showingTasks = lists
 		}
+		return showingTasks;
+	}
+
+	render() {
+		const { query } = this.state;
+		const showingTasks = this.generateVisibleTasks();
+
 		return(
 			<div>
 				<Link
@@ -37,7 +47,7 @@ class TodoList extends Component {
           type='text'
           placeholder='Search Tasks'
           value={query}
-          onChange={(event) => this.updateQuery(event.target.value)}
+          onChange={this.updateQuery}
         />
 				<ol className='task-list'>
 					{showingTasks.map((task) => (
@@ -45,7 +55,7 @@ class TodoList extends Component {
 							<div className='task-details'>
 								<p>{task.taskName}</p>
 							</div>
-							<button onClick = { () => {this.deleteTodo(task)} } className='task-remove'>
+							<button data-param={JSON.stringify({task})} onClick = {this.deleteTodo} className='task-remove'>
 								Remove
 							</button>
 						</li>

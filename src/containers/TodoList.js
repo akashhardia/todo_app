@@ -4,9 +4,11 @@ import TodoList from '../components/TodoList.js';
 import { displayTodoListRequest, displayTodoListRemove } from '../actions/displayTodoList';
 
 class ToDoListContainer extends Component {
+	
 	render() {
 		const { isPending, todoLists } = this.props.displayToDoListStates;
 		const{ remove } = this.props;
+
 		return (
 			<Fragment>
 				{
@@ -19,7 +21,7 @@ class ToDoListContainer extends Component {
 	}
 
 	async componentDidMount() {
-		const { getLists, success, failure} = this.props;		
+		const { getLists } = this.props;		
 		getLists();
 	}
 }

@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 class AddTodo extends Component {
 	createTask = (task) => {
 		const { request } = this.props;
-		console.log('add todo', task);
 		request(task);		
   }
 
@@ -16,13 +15,19 @@ class AddTodo extends Component {
     this.createTask(formValue);
   }
 
-	render() {
+	render() {		
 		return(
 			<Fragment>
 				<Link className='close-create-task' to='/'>Close</Link>
 				<form className='create-contact-form' onSubmit={ this.handleSubmit }>
           <div className='create-contact-details'>
-            <input className='create-contact-input' type='text' name='taskName' required="required" pattern="^[^-\s][a-zA-Z0-9_\s-]+$" placeholder='Add a Task'/>
+						<input 
+							className='create-contact-input' 
+							type='text' 
+							name='taskName' 
+							required="required" 
+							pattern="^[^-\s][a-zA-Z0-9_\s-]+$" 
+							placeholder='Add a Task'/>
             <button className='create-contact-submit' type="submit" >Add</button>
           </div>
         </form>
