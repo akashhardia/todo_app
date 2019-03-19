@@ -36,7 +36,7 @@ class TodoList extends Component {
 		const showingTasks = this.generateVisibleTasks()
 
 		return(
-			<div>
+			<div className='search-task-container'>
 				<TextFieldHOC 
           className='search-tasks'
           type='text'
@@ -46,7 +46,6 @@ class TodoList extends Component {
         />
 
         <ListHOC 
-          dense={ true }
           list={ showingTasks }
           onDelete={ this.deleteTodo }
         />

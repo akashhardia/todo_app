@@ -9,6 +9,7 @@ function TextFieldHOC(props) {
   return(
     <TextField
       className={ className }
+      fullWidth
       type={ type }
       value={ query }
       placeholder={ placeholder }

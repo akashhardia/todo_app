@@ -31,3 +31,31 @@
     transform: rotate(360deg);
   }
 }
+
+#root {
+  width: 50%;
+  margin: auto;
+}
+
+#list-container {
+  margin: auto;
+  margin-top: 15px;
+}
+
+.search-task-container {
+  margin-top: 15px;
+}
+
+.create-todo-form {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between
+}
+
+.create-todo-input {
+  width: 75%;
+}
+
+.create-todo-button {
+  width: 20%;
+}

@@ -30,11 +30,11 @@ function MyListItem( props ) {
 
 function ListHOC(props) {
   const { 
-    list, dense, onDelete
+    list, onDelete
   } = props
 
   return(
-    <List dense={ dense }>
+    <List>
       { list.map(task => (
         <MyListItem
           task={ task }

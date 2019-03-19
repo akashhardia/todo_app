@@ -21,7 +21,7 @@ class AddTodo extends Component {
 		else {
 			this.props.create(formValue);
 			this.setState({ error: false, query: '' })
-		}			
+		}
   }
   
   render() {
@@ -29,7 +29,7 @@ class AddTodo extends Component {
     const { classes } = this.props
 
     return(
-      <form className = 'create-contact-form' id = 'myform' onSubmit = { this.handleSubmit }>
+      <form className = 'create-todo-form' id = 'myform' onSubmit = { this.handleSubmit }>
         <TextFieldHOC 
           required={ true }
           type='text'
@@ -38,15 +38,16 @@ class AddTodo extends Component {
           error = { error }
           onChange = { this.updateQuery }
           name='taskName'
+          className={ classes.input }
         />
 
         <ButtonHOC 
-          variant='contained'
+          variant='outlined'
           color='primary'
           className={ classes.button }
           type='submit'
           form='myform'
-          buttonText='Submit'
+          buttonText='Add'
         />
       </form>
     )

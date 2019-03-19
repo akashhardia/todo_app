@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import AddTodo from '../components/AddTodo'
@@ -15,19 +15,22 @@ class AddTodoContainer extends Component {
     const { classes, request } = this.props;
 
     return(
-      <Fragment>
-        <Link className = 'close-create-task' to = '/'>
-          <ButtonHOC buttonText='Close'/>
-        </Link>
+      <div id='list-container'>        
+        <ButtonHOC 
+          buttonText='Close'
+          to='/'
+          component={ Link }
+          variant='outlined'      
+        />
         <AddTodo classes={ classes } create={ request }/>
-      </Fragment>      
+      </div>      
     )
   }
 }
 
 const styles = {
-	input: 'create-contact-input',
-	button: 'create-contact-submit'
+	input: 'create-todo-input',
+	button: 'create-todo-button'
 }
 
 const mapDispatchToProps = (dispatch) => ({

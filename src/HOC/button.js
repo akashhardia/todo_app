@@ -3,7 +3,7 @@ import { Button } from '@material-ui/core';
 
 function ButtonHOC(props) {
   const {
-    variant, color, className, type, form, buttonText
+    variant, color, className, type, form, buttonText, to, component
   } = props
 
   return(
@@ -13,6 +13,8 @@ function ButtonHOC(props) {
       className={ className }
       type={ type }
       form={ form }
+      to={ to }
+      component={ component }
     >
       { buttonText }
     </Button>
