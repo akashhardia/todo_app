@@ -1,10 +1,6 @@
 {
   "tasks": [
     {
-      "taskName": "New Task Added 4",
-      "id": 5
-    },
-    {
       "taskName": "Harry Potter and the Goblet of Fire",
       "id": 6
     },
@@ -19,6 +15,10 @@
     {
       "taskName": "Book Movie Tickets for Pokemon: The Movie",
       "id": 9
+    },
+    {
+      "taskName": "JS is everywhere, Everybody loves React.",
+      "id": 10
     }
   ]
 }

@@ -3,40 +3,22 @@ import TextFieldHOC from '../HOC/inputText'
 import ButtonHOC from '../HOC/button'
 
 class AddTodo extends Component {
-  state = {
-		error: false,
-		query: ''
-	}
-
-  updateQuery = event => {
-		const query = event.target.value
-    this.setState({ query: query })
-  }
-
-  handleSubmit = (event) => {
-		event.preventDefault();
-		const formValue = event.target.taskName.value.trim();
-		if(!formValue)
-			this.setState({ error: true })
-		else {
-			this.props.create(formValue);
-			this.setState({ error: false, query: '' })
-		}
-  }
   
   render() {
-    const { query, error } = this.state
-    const { classes } = this.props
+    const {
+      state, classes, handleSubmit, updateQuery
+    } = this.props
+    const { query, error } = state
 
     return(
-      <form className = 'create-todo-form' id = 'myform' onSubmit = { this.handleSubmit }>
+      <form className = { classes.form } id = 'myform' onSubmit = { handleSubmit }>
         <TextFieldHOC 
           required={ true }
           type='text'
           query={ query }
           placeholder='Add new Task'
           error = { error }
-          onChange = { this.updateQuery }
+          onChange = { updateQuery }
           name='taskName'
           className={ classes.input }
         />

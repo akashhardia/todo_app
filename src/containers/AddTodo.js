@@ -10,6 +10,27 @@ class AddTodoContainer extends Component {
 		const { request } = this.props;
 		request(task);
   }
+
+  state = {
+		error: false,
+		query: ''
+  }
+  
+  updateQuery = event => {
+		const query = event.target.value
+    this.setState({ query: query })
+  }
+
+  handleSubmit = (event) => {
+		event.preventDefault();
+		const formValue = event.target.taskName.value.trim();
+		if(!formValue)
+			this.setState({ error: true })
+		else {
+			this.createTask(formValue);
+			this.setState({ error: false, query: '' })
+		}
+  }
   
   render() {
     const { classes, request } = this.props;
@@ -22,7 +43,13 @@ class AddTodoContainer extends Component {
           component={ Link }
           variant='outlined'      
         />
-        <AddTodo classes={ classes } create={ request }/>
+        <AddTodo 
+          classes={ classes } 
+          create={ request }
+          updateQuery={ this.updateQuery }
+          state={this.state}
+          handleSubmit={ this.handleSubmit }
+        />
       </div>      
     )
   }
@@ -30,12 +57,13 @@ class AddTodoContainer extends Component {
 
 const styles = {
 	input: 'create-todo-input',
-	button: 'create-todo-button'
+  button: 'create-todo-button',
+  form: 'create-todo-form'
 }
 
 const mapDispatchToProps = (dispatch) => ({
   request: (task) => dispatch(addTodoRequest(task)),
-  classes: styles  
+  classes: styles
 })
 
 export default connect(null, mapDispatchToProps)(AddTodoContainer);
